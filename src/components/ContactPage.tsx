@@ -17,6 +17,8 @@ class ContactPage extends React.Component<ContactPageProps, {}> {
 
     render() {
         return (
+            // Property name should be "onSubmit", by default
+            // The redux-form "handleSubmit" method will invoke "onSubmit", by default
             <ContactForm onSubmit={this.save} />
         );
     }

@@ -1,15 +1,6 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
-import { Field, reduxForm, FormProps /*, FormErrors */ } from 'redux-form';
-
-// export interface ContactFormProps {
-//     firstName?: string;
-//     lastName?: string;
-//     email?: string;
-
-//     // tslint:disable-next-line:no-any
-//     handleSubmit?: any;
-// }
+import { Field, reduxForm, FormProps, FormErrors } from 'redux-form';
 
 export interface ContactFormData {
     firstName?: string;
@@ -19,7 +10,10 @@ export interface ContactFormData {
 
 export interface ContactFormProps extends FormProps<ContactFormData, {}, {}> {
     dispatch?: Dispatch<{}>;
-    onSubmit: any; // SubmitHandler<FormData extends DataShape, P, S>
+
+    // SubmitHandler<FormData extends DataShape, P, S>
+    // tslint:disable-next-line:max-line-length
+    onSubmit: (values: ContactFormData, dispatch: Dispatch<{}>, props: ContactFormProps) => void | FormErrors<FormData> | Promise<any>;
 }
 
 class ContactForm extends React.Component<ContactFormProps, {}> {
@@ -39,40 +33,9 @@ class ContactForm extends React.Component<ContactFormProps, {}> {
         const { handleSubmit } = this.props;
 
         return (
-            /*<form onSubmit={handleSubmit(this.save.bind(this))}>
-                <div>
-                    <label htmlFor="firstName">First Name</label>
-                    <Field name="firstName" component="input" type="text" />
-                </div>
-                <div>
-                    <label htmlFor="lastName">Last Name</label>
-                    <Field name="lastName" component="input" type="text" />
-                </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <Field name="email" component="input" type="email" />
-                </div>
-                <button type="submit">Submit</button>
-            </form>*/
-            /*<form onSubmit={handleSubmit!(this.save)}>
-                <div>
-                    <label htmlFor="firstName">First Name</label>
-                    <Field name="firstName" component="input" type="text" />
-                </div>
-                <div>
-                    <label htmlFor="lastName">Last Name</label>
-                    <Field name="lastName" component="input" type="text" />
-                </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <Field name="email" component="input" type="email" />
-                </div>
-                <button type="submit">Submit</button>
-            </form>*/
-
             /*
             "handleSubmit"" is supplied by redux-form
-            It will invoke the container-supplied "onSubmit" method
+            It will invoke the container-supplied "onSubmit" method prop
             */
             <form onSubmit={handleSubmit}>
                 <div>
@@ -93,13 +56,6 @@ class ContactForm extends React.Component<ContactFormProps, {}> {
         );
     }
 }
-
-// Decorate the form component
-// const ContactForm = reduxForm({
-//     form: 'contact' // a unique name for this form
-// })(ContactFormCore);
-
-// export default ContactForm;
 
 export default reduxForm({
     form: 'contact',  // a unique identifier for this form,
