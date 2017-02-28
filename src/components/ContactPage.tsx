@@ -12,6 +12,8 @@ class ContactPage extends React.Component<ContactPageProps, {}> {
     // SubmitHandler<FormData extends DataShape, P, S>
     save(values: ContactFormData, dispatch: Dispatch<{}>, props: ContactFormProps) {
         // tslint:disable-next-line:no-console
+        console.log('ContactPage.save');
+        // tslint:disable-next-line:no-console
         console.log(values);
     }
 

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import './index.css';
+// styles
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import './index.css';
 
 import configureStore from './store/ConfigureStore';
 import Root from './components/Root';
