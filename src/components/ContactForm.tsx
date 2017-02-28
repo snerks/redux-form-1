@@ -1,4 +1,3 @@
-// import { error } from 'util';
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { Field, reduxForm, FormProps, FormErrors } from 'redux-form';
@@ -36,12 +35,6 @@ const renderInput = (field: any) => {
 };
 
 class ContactForm extends React.Component<ContactFormProps, {}> {
-
-    // save(values: ContactFormData, dispatch: Dispatch<{}>, props: ContactFormProps) {
-    //     // tslint:disable-next-line:no-console
-    //     console.log(values);
-    // }
-
     render() {
         const { handleSubmit, onSubmit } = this.props;
 
@@ -52,29 +45,10 @@ class ContactForm extends React.Component<ContactFormProps, {}> {
             */
             <div className="container">
                 <form className="form-horizontal" onSubmit={handleSubmit!(onSubmit)}>
-                    {/*<div className="form-group">
-                        <label className="col-sm-2 control-label" htmlFor="firstName">First Name</label>
-                        <div className="col-sm-10">
-                            <Field className="form-control" name="firstName" component="input" type="text" />
-                        </div>
-                    </div>*/}
-
                     <Field name="firstName" component={renderInput} placeholder="First Name" type="text" />
                     <Field name="lastName" component={renderInput} placeholder="Last Name" type="text" />
                     <Field name="email" component={renderInput} placeholder="Email" type="email" />
 
-                    {/*<div className="form-group">
-                        <label className="col-sm-2 control-label" htmlFor="lastName">Last Name</label>
-                        <div className="col-sm-10">
-                            <Field className="form-control" name="lastName" component="input" type="text" />
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <label className="col-sm-2 control-label" htmlFor="email">Email</label>
-                        <div className="col-sm-10">
-                            <Field className="form-control" name="email" component="input" type="email" />
-                        </div>
-                    </div>*/}
                     <button className="btn btn-default" type="submit">Submit</button>
                 </form>
             </div>
@@ -104,5 +78,5 @@ const validate = (values: ContactFormData, props: ContactFormProps): FormErrors<
 
 export default reduxForm({
     form: 'contact',  // a unique identifier for this form,
-    validate // : ContactForm.validate
+    validate
 })(ContactForm);
